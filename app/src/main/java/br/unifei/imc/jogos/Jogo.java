@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-public interface Jogo {
+public interface Jogo{
     
 
     //void jogo(String nome,Double valor,String descricao,String fabricante);

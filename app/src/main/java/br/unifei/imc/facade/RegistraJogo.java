@@ -56,11 +56,34 @@ public class RegistraJogo {
             JogoXbox jg = (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
             jg.registra(context);
 
-        } else if (Objects.equals(plataforma, "Playstation5")) {
+        } else if (Objects.equals(plataforma, "Playstation")) {
             fab = new FabricaJogosPlay5();
             JogoPlay5 jg = (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
             jg.registra(context);
         }
 
+    }
+
+    public Jogo atualiza(String plataforma, Context context){
+        if (Objects.equals(plataforma, "Pc")) {
+            fab = new FabricaJogosPc();
+            return (JogoPc) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+
+        } else if (Objects.equals(plataforma, "Multiplataforma")) {
+            fab = new FabMultiplataforma();
+            JogoMultiplataforma jg = (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return jg;
+
+        } else if (Objects.equals(plataforma, "Xbox")) {
+            fab = new FabricaJogosXbox();
+            JogoXbox jg = (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return jg;
+
+        } else if (Objects.equals(plataforma, "Playstation")) {
+            fab = new FabricaJogosPlay5();
+            JogoPlay5 jg = (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return jg;
+        }
+        return null;
     }
 }

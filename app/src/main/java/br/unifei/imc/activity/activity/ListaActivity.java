@@ -67,6 +67,7 @@ public class ListaActivity extends AppCompatActivity {
                                 Games game = listaJogos.get(position);
                                 Intent intent = new Intent(getApplicationContext(), AtualizaActivity.class);
                                 intent.putExtra("objeto", game);
+                                intent.putExtra("plataforma", plataforma);
                                 startActivity(intent);
                             }
 

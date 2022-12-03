@@ -47,7 +47,24 @@ public class GamesDAO implements IGamesDAO{
 
     @Override
     public boolean atualizar(Jogo jogo, String plataforma) {
-        return false;
+        ContentValues cv = new ContentValues();
+        cv.put("plataforma", plataforma);
+        cv.put("nome", jogo.getNome());
+        cv.put("valor", jogo.getValor());
+        cv.put("descricao", jogo.getDescricao());
+        cv.put("fabricante", jogo.getFabricante());
+        cv.put("qtd", jogo.getQtd());
+
+        try {
+            String[] args = {jogo.getNome(), plataforma};
+            escreve.update(DbHelper.TABELA_JOGOS, cv, "nome=? AND plataforma=?", args);
+            Log.i("INFO", "Jogo atualizada com sucesso");
+        }catch (Exception e){
+            Log.e("INFO", "Erro ao atualizar a Jogo " + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override
