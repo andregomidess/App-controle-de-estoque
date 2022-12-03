@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".activity.activity.ConsultaActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:background="#24D5AB"
+        android:fontFamily="@font/bebas_neue"
+        android:gravity="center|center_horizontal"
+        android:text="Consultar"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textSpinnerConsulta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/buttonVoltarConsulta"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Voltar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConfirmarConsullta"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSpinnerConsulta" />
+
+    <Button
+        android:id="@+id/buttonConfirmarConsullta"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Confirmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonVoltarConsulta"
+        app:layout_constraintTop_toBottomOf="@+id/textSpinnerConsulta" />
+
+    <Spinner
+        android:id="@+id/textSpinnerConsulta"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:animateLayoutChanges="false"
+        android:background="@android:drawable/spinner_background"
+        android:outlineProvider="none"
+        app:barrierAllowsGoneWidgets="false"
+        app:chainUseRtl="false"
+        app:guidelineUseRtl="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

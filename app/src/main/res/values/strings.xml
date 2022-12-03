@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">testePOOII</string>
+    <string-array name="plataformas">
+        <item>Pc</item>
+        <item>Multiplataforma</item>
+        <item>Xbox</item>
+        <item>Playstation</item>
+    </string-array>
+</resources>
