@@ -56,6 +56,7 @@ public class Facade {
     }
 
     public Jogo inicializa(String plataforma){
+
         if (Objects.equals(plataforma, "Pc")) {
             fab = new FabricaJogosPc();
             return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
@@ -73,5 +74,51 @@ public class Facade {
             return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
         }
         return null;
+    }
+
+    public void atualiza( String plataforma, Context context){
+        if (Objects.equals(plataforma, "Pc")) {
+            fab = new FabricaJogosPc();
+            JogoPc jg = (JogoPc) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.atualiza(context);
+
+        } else if (Objects.equals(plataforma, "Multiplataforma")) {
+            fab = new FabMultiplataforma();
+            JogoMultiplataforma jg = (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.atualiza(context);
+
+        } else if (Objects.equals(plataforma, "Xbox")) {
+            fab = new FabricaJogosXbox();
+            JogoXbox jg = (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.atualiza(context);
+
+        } else if (Objects.equals(plataforma, "Playstation")) {
+            fab = new FabricaJogosPlay5();
+            JogoPlay5 jg = (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.atualiza(context);
+        }
+    }
+
+    public void deleta( String plataforma, Context context){
+        if (Objects.equals(plataforma, "Pc")) {
+            fab = new FabricaJogosPc();
+            JogoPc jg = (JogoPc) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.deleta(context);
+
+        } else if (Objects.equals(plataforma, "Multiplataforma")) {
+            fab = new FabMultiplataforma();
+            JogoMultiplataforma jg = (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.deleta(context);
+
+        } else if (Objects.equals(plataforma, "Xbox")) {
+            fab = new FabricaJogosXbox();
+            JogoXbox jg = (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.deleta(context);
+
+        } else if (Objects.equals(plataforma, "Playstation")) {
+            fab = new FabricaJogosPlay5();
+            JogoPlay5 jg = (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            jg.deleta(context);
+        }
     }
 }

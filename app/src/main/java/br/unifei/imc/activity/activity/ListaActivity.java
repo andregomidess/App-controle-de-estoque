@@ -79,21 +79,25 @@ public class ListaActivity extends AppCompatActivity {
                                 dialog.setNegativeButton("Deletar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Jogo jg = listaJogos.get(position);
-                                        Facade facade = new Facade(jg.getNome(),
+                                        AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
+                                        dialog.setTitle("Escolha uma opção");
+                                        dialog.setMessage("Você Realmente deseja excluir o jogo?");
+
+                                        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Jogo jg = listaJogos.get(position);
+                                                Facade facade = new Facade(jg.getNome(),
                                                 jg.getValor(), jg.getDescricao(),
                                                 jg.getFabricante(), jg.getQtd());
-                                        Jogo jogo = facade.inicializa(plataforma);
-                                        if(gamesDAO.deletar(jogo, plataforma)){
-                                            carregarListaTarefas();
-                                            Toast.makeText(getApplicationContext(),
-                                                    "Jogo excluido com sucesso",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }else {
-                                            Toast.makeText(getApplicationContext(),
-                                                    "Erro ao excluir jogo",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
+                                                facade.deleta(plataforma, getApplicationContext());
+                                                carregarListaTarefas();
+                                            }
+                                        });
+
+                                        dialog.setNegativeButton("Não", null);
+                                        dialog.create();
+                                        dialog.show();
                                     }
                                 });
                                 dialog.create();

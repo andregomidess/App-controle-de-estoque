@@ -11,6 +11,8 @@ public interface Jogo{
     //void jogo(String nome,Double valor,String descricao,String fabricante);
 
     void registra(Context context);
+    void atualiza (Context context);
+    void deleta (Context context);
 
     String getNome();
 

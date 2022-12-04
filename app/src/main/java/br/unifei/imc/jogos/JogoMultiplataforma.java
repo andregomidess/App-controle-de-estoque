@@ -1,6 +1,7 @@
 package br.unifei.imc.jogos;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,7 @@ public class JogoMultiplataforma implements Jogo, Serializable {
     private String descricao;
     private String fabricante;
     private int qtd;
+    private GamesDAO gamesDAO;
 
 
     public JogoMultiplataforma(String nome, Double valor, String descricao, String fabricante, int qtd) {
@@ -30,8 +32,36 @@ public class JogoMultiplataforma implements Jogo, Serializable {
 
     @Override
     public void registra(Context context) {
-        GamesDAO gamesDAO = new GamesDAO(context);
+        gamesDAO = new GamesDAO(context);
         gamesDAO.salvar(this, "Multiplataforma");
+    }
+
+    @Override
+    public void atualiza(Context context) {
+        gamesDAO = new GamesDAO(context);
+        if(gamesDAO.atualizar(this, "Multiplataforma")){
+            Toast.makeText(context,
+                    "Sucesso ao atualizar Jogo",
+                    Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(context,
+                    "Erro ao atualizar",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void deleta(Context context) {
+        gamesDAO = new GamesDAO(context);
+        if(gamesDAO.deletar(this, "Multiplataforma")){
+            Toast.makeText(context,
+                    "Jogo excluido com sucesso",
+                    Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(context,
+                    "Erro ao excluir o jogo",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

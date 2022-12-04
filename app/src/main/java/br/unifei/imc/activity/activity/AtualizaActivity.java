@@ -69,16 +69,7 @@ public class AtualizaActivity extends AppCompatActivity {
                     if(verificaCampoVazio()){
                         Facade facade = new Facade(game.getNome(), Double.parseDouble(valor),
                                 desc, fab, Integer.parseInt(qtd));
-                        Jogo gameAlterado = facade.inicializa(plataforma);
-                        if(gamesDAO.atualizar(gameAlterado, plataforma)){
-                            Toast.makeText(getApplicationContext(),
-                                    "Sucesso ao atualizar Jogo",
-                                    Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(getApplicationContext(),
-                                    "Erro ao atualizar",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        facade.atualiza(plataforma, getApplicationContext());
                     }
                 }
 
