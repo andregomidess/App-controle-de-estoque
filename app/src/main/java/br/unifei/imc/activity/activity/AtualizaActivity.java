@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
-import br.unifei.imc.facade.RegistraJogo;
+import br.unifei.imc.facade.Facade;
 import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
@@ -22,7 +20,7 @@ public class AtualizaActivity extends AppCompatActivity {
     private Button buttonConfirmarAtualiza;
     private TextView textNomeJogoAtualiza, textValorAtualiza, textDescAtualiza, textFabAtualiza,
             textQtdAtualiza;
-    private Games game;
+    private Jogo game;
     private String plataforma;
 
     @Override
@@ -37,7 +35,7 @@ public class AtualizaActivity extends AppCompatActivity {
         textFabAtualiza = findViewById(R.id.textFabAtualiza);
         textQtdAtualiza = findViewById(R.id.textQtdAtualiza);
         Bundle dados = getIntent().getExtras();
-        game = (Games) dados.getSerializable("objeto");
+        game = (Jogo) dados.getSerializable("objeto");
         plataforma = dados.getString("plataforma");
         textNomeJogoAtualiza.setEnabled(false);
 
@@ -68,9 +66,9 @@ public class AtualizaActivity extends AppCompatActivity {
                 String qtd = textQtdAtualiza.getText().toString();
                 if (verificaCampoIgual()){
                     if(verificaCampoVazio()){
-                        RegistraJogo rj = new RegistraJogo(game.getNome(), Double.parseDouble(valor),
+                        Facade rj = new Facade(game.getNome(), Double.parseDouble(valor),
                                 desc, fab, Integer.parseInt(qtd));
-                        Jogo gameAlterado = rj.atualiza(plataforma, getApplicationContext());
+                        Jogo gameAlterado = rj.inicializa(plataforma);
                         if(gamesDAO.atualizar(gameAlterado, plataforma)){
                             Toast.makeText(getApplicationContext(),
                                     "Sucesso ao atualizar Jogo",

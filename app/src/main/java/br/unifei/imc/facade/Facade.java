@@ -2,25 +2,16 @@ package br.unifei.imc.facade;
 
 import android.content.Context;
 
-import br.unifei.imc.DAO.GamesDAO;
-import br.unifei.imc.arquivo.CriaArquivo;
-import br.unifei.imc.arquivo.SalvaArquivo;
 import br.unifei.imc.fabricas.*;
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 import br.unifei.imc.jogos.JogoMultiplataforma;
 import br.unifei.imc.jogos.JogoPc;
 import br.unifei.imc.jogos.JogoPlay5;
 import br.unifei.imc.jogos.JogoXbox;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
-public class RegistraJogo {
+public class Facade {
     private String nome;
     private Double valor;
     private String descricao;
@@ -28,7 +19,7 @@ public class RegistraJogo {
     private int qtd;
     private FabricaDeJogo fab;
 
-    public RegistraJogo(String nome, Double valor, String descricao, String fabricante, int qtd) {
+    public Facade(String nome, Double valor, String descricao, String fabricante, int qtd) {
         this.nome = nome;
         this.valor = valor;
         this.descricao = descricao;
@@ -64,7 +55,7 @@ public class RegistraJogo {
 
     }
 
-    public Jogo atualiza(String plataforma, Context context){
+    public Jogo inicializa(String plataforma){
         if (Objects.equals(plataforma, "Pc")) {
             fab = new FabricaJogosPc();
             return (JogoPc) fab.criaJogos(nome, valor, descricao, fabricante, qtd);

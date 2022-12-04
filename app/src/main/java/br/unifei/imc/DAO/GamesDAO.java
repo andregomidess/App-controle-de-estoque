@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unifei.imc.facade.Facade;
 import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
@@ -69,22 +70,34 @@ public class GamesDAO implements IGamesDAO{
 
     @Override
     public boolean deletar(Jogo jogo, String plataforma) {
-        return false;
+
+        try {
+            String[] args = {jogo.getNome(), plataforma};
+            escreve.delete(DbHelper.TABELA_JOGOS, "nome=? AND plataforma=?", args);
+            Log.i("INFO", "Jogo remover com sucesso");
+        }catch (Exception e){
+            Log.e("INFO", "Erro ao remover a Jogo " + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public List<Games> consultar(String plat) {
+    public List<Jogo> consultar(String plat) {
 
-        List<Games> jogos = new ArrayList<>();
+        List<Jogo> jogos = new ArrayList<>();
+
         String sql = "SELECT * FROM " + DbHelper.TABELA_JOGOS + " WHERE plataforma = " + "'" + plat + "'" + " ;";
         Cursor c = le.rawQuery(sql, null);
         while (c.moveToNext()){
-            Games jogo = new Games();
             String nome = c.getString( c.getColumnIndex("nome"));
             Double valor = c.getDouble( c.getColumnIndex("valor"));
             String desc = c.getString( c.getColumnIndex("descricao"));
             String fabricante = c.getString( c.getColumnIndex("fabricante"));
             int qtd = c.getInt( c.getColumnIndex("qtd"));
+            Facade facade = new Facade(nome, valor, desc, fabricante, qtd);
+            Jogo jogo = facade.inicializa(plat);
 
             jogo.setNome(nome);
             jogo.setValor(valor);

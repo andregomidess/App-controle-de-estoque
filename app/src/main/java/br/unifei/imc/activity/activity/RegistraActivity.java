@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import br.unifei.imc.R;
-import br.unifei.imc.facade.RegistraJogo;
+import br.unifei.imc.facade.Facade;
 
 public class RegistraActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -59,7 +59,7 @@ public class RegistraActivity extends AppCompatActivity implements AdapterView.O
         String fab = textFabReg.getText().toString();
         String qtd = textQtdReg.getText().toString();
         int qtdD = Integer.parseInt(qtd);
-        RegistraJogo registra = new RegistraJogo(nome, valorD, desc, fab, qtdD);
+        Facade registra = new Facade(nome, valorD, desc, fab, qtdD);
         registra.registrar(escolha, getApplicationContext());
 
     }

@@ -1,9 +1,12 @@
 package br.unifei.imc.activity.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.helper.widget.Carousel;
@@ -14,13 +17,16 @@ import br.unifei.imc.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unifei.imc.activity.activity.ConsultaActivity;
+import br.unifei.imc.activity.activity.MainActivity;
 import br.unifei.imc.jogos.Games;
+import br.unifei.imc.jogos.Jogo;
 
 public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> {
 
-    private List<Games> listaJogos;
+    private List<Jogo> listaJogos;
 
-    public AdapterJogo(List<Games> lista) {
+    public AdapterJogo(List<Jogo> lista) {
         this.listaJogos = lista;
     }
 
@@ -36,13 +42,12 @@ public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Games game = listaJogos.get(position);
+        Jogo game = listaJogos.get(position);
         holder.nome.setText(game.getNome());
         holder.valor.setText(game.getValor().toString());
         holder.desc.setText(game.getDescricao());
         holder.fabricante.setText(game.getFabricante());
         holder.qtd.setText(Integer.toString(game.getQtd()));
-
 
     }
 

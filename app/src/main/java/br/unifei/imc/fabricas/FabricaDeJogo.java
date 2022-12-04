@@ -6,4 +6,5 @@ public abstract class FabricaDeJogo {
 
     public abstract Jogo criaJogos(String nome, Double valor, String desc, String fabricante, int qtd);
 
+    public abstract Jogo criaJogos();
 }

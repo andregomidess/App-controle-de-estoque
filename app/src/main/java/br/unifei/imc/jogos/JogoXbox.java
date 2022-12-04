@@ -2,11 +2,12 @@ package br.unifei.imc.jogos;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.unifei.imc.DAO.GamesDAO;
 
-public class JogoXbox implements Jogo{
+public class JogoXbox implements Jogo, Serializable {
 
     private String nome;
     private Double valor;
@@ -20,6 +21,10 @@ public class JogoXbox implements Jogo{
         this.descricao = descricao;
         this.fabricante = fabricante;
         this.qtd = qtd;
+    }
+
+    public JogoXbox() {
+
     }
 
     @Override
@@ -51,5 +56,30 @@ public class JogoXbox implements Jogo{
     @Override
     public int getQtd() {
         return qtd;
+    }
+
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    @Override
+    public void setDescricao(String desc) {
+        this.descricao = desc;
+    }
+
+    @Override
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    @Override
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 }

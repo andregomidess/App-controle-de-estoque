@@ -9,4 +9,9 @@ public class FabricaJogosXbox extends FabricaDeJogo{
     public Jogo criaJogos(String nome, Double valor, String desc, String fabricante, int qtd) {
         return new JogoXbox(nome, valor, desc, fabricante, qtd);
     }
+
+    @Override
+    public Jogo criaJogos() {
+        return new JogoXbox();
+    }
 }

@@ -8,4 +8,9 @@ public class FabMultiplataforma extends FabricaDeJogo{
     public Jogo criaJogos(String nome, Double valor, String desc, String fabricante, int qtd) {
         return new JogoMultiplataforma(nome, valor, desc, fabricante, qtd);
     }
+
+    @Override
+    public Jogo criaJogos() {
+        return new JogoMultiplataforma();
+    }
 }
