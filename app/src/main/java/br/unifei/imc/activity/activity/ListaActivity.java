@@ -32,7 +32,6 @@ public class ListaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Jogo> listaJogos = new ArrayList<>();
-    private List<Jogo> listaJ = new ArrayList<>();
     private String plataforma;
     private AdapterJogo adapterJogo;
 

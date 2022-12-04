@@ -44,10 +44,10 @@ public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Jogo game = listaJogos.get(position);
         holder.nome.setText(game.getNome());
-        holder.valor.setText(game.getValor().toString());
+        holder.valor.setText("Preço unitário: R$" + game.getValor().toString());
         holder.desc.setText(game.getDescricao());
         holder.fabricante.setText(game.getFabricante());
-        holder.qtd.setText(Integer.toString(game.getQtd()));
+        holder.qtd.setText("Quantidade: " + Integer.toString(game.getQtd()));
 
     }
 

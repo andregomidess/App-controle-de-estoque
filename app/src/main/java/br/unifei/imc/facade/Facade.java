@@ -58,19 +58,19 @@ public class Facade {
     public Jogo inicializa(String plataforma){
         if (Objects.equals(plataforma, "Pc")) {
             fab = new FabricaJogosPc();
-            return (JogoPc) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
 
         } else if (Objects.equals(plataforma, "Multiplataforma")) {
             fab = new FabMultiplataforma();
-            return (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
 
         } else if (Objects.equals(plataforma, "Xbox")) {
             fab = new FabricaJogosXbox();
-            return (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
 
         } else if (Objects.equals(plataforma, "Playstation")) {
             fab = new FabricaJogosPlay5();
-            return (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
+            return fab.criaJogos(nome, valor, descricao, fabricante, qtd);
         }
         return null;
     }

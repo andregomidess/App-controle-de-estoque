@@ -2,6 +2,7 @@ package br.unifei.imc.activity.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -66,9 +67,9 @@ public class AtualizaActivity extends AppCompatActivity {
                 String qtd = textQtdAtualiza.getText().toString();
                 if (verificaCampoIgual()){
                     if(verificaCampoVazio()){
-                        Facade rj = new Facade(game.getNome(), Double.parseDouble(valor),
+                        Facade facade = new Facade(game.getNome(), Double.parseDouble(valor),
                                 desc, fab, Integer.parseInt(qtd));
-                        Jogo gameAlterado = rj.inicializa(plataforma);
+                        Jogo gameAlterado = facade.inicializa(plataforma);
                         if(gamesDAO.atualizar(gameAlterado, plataforma)){
                             Toast.makeText(getApplicationContext(),
                                     "Sucesso ao atualizar Jogo",
