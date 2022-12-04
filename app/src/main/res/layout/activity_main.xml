@@ -30,22 +30,11 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonRegistrar" />
 
     <Button
-        android:id="@+id/buttonDeletar"
+        android:id="@+id/buttonVendas"
         android:layout_width="230dp"
         android:layout_height="55dp"
         android:layout_marginTop="28dp"
-        android:text="Deletar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAtualizar" />
-
-    <Button
-        android:id="@+id/buttonAtualizar"
-        android:layout_width="230dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="28dp"
-        android:text="Atualizar"
+        android:text="Vendas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"

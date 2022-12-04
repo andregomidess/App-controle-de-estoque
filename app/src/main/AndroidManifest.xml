@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.activity.DeletaActivity"
+            android:name=".activity.activity.VendasActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

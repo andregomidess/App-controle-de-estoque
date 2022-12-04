@@ -13,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button buttonRegistra;
     private Button buttonConsulta;
-    private Button buttonAtualiza;
-    private Button buttonDeleta;
+    private Button buttonVendas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonRegistra = findViewById(R.id.buttonRegistrar);
         buttonConsulta = findViewById(R.id.buttonConsultar);
-        buttonAtualiza = findViewById(R.id.buttonAtualizar);
-        buttonDeleta = findViewById(R.id.buttonDeletar);
+        buttonVendas = findViewById(R.id.buttonVendas);
 
         //Setando onclick botão registrar
         buttonRegistra.setOnClickListener(new View.OnClickListener() {
@@ -45,22 +43,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //setando onclick botão atualizar
-        buttonAtualiza.setOnClickListener(new View.OnClickListener() {
+        buttonVendas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AtualizaActivity.class);
+                Intent intent = new Intent(getApplicationContext(), VendasActivity.class);
                 startActivity(intent);
             }
         });
 
-        //setando onclick botão deletar
-        buttonDeleta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DeletaActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }

@@ -5,39 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".activity.activity.DeletaActivity">
+    tools:context=".activity.activity.VendasActivity">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewVendas"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:background="#24D5AB"
         android:fontFamily="@font/bebas_neue"
         android:gravity="center|center_horizontal"
-        android:text="Deletar"
+        android:text="Vendas"
         android:textColor="@color/white"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/textSpinnerAtualiza"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerVendas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textSpinnerAtualiza"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Plataforma:"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/buttonConfirmarDeleta"
@@ -57,7 +41,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSpinnerAtualiza">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerVendas">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -75,4 +59,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <Spinner
+        android:id="@+id/spinnerVendas"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@android:drawable/spinner_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

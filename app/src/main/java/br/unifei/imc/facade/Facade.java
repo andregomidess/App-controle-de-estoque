@@ -62,18 +62,15 @@ public class Facade {
 
         } else if (Objects.equals(plataforma, "Multiplataforma")) {
             fab = new FabMultiplataforma();
-            JogoMultiplataforma jg = (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
-            return jg;
+            return (JogoMultiplataforma) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
 
         } else if (Objects.equals(plataforma, "Xbox")) {
             fab = new FabricaJogosXbox();
-            JogoXbox jg = (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
-            return jg;
+            return (JogoXbox) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
 
         } else if (Objects.equals(plataforma, "Playstation")) {
             fab = new FabricaJogosPlay5();
-            JogoPlay5 jg = (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
-            return jg;
+            return (JogoPlay5) fab.criaJogos(nome, valor, descricao, fabricante, qtd);
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package br.unifei.imc.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -91,11 +92,11 @@ public class GamesDAO implements IGamesDAO{
         String sql = "SELECT * FROM " + DbHelper.TABELA_JOGOS + " WHERE plataforma = " + "'" + plat + "'" + " ;";
         Cursor c = le.rawQuery(sql, null);
         while (c.moveToNext()){
-            String nome = c.getString( c.getColumnIndex("nome"));
-            Double valor = c.getDouble( c.getColumnIndex("valor"));
-            String desc = c.getString( c.getColumnIndex("descricao"));
-            String fabricante = c.getString( c.getColumnIndex("fabricante"));
-            int qtd = c.getInt( c.getColumnIndex("qtd"));
+            @SuppressLint("Range") String nome = c.getString( c.getColumnIndex("nome"));
+            @SuppressLint("Range") Double valor = c.getDouble( c.getColumnIndex("valor"));
+            @SuppressLint("Range") String desc = c.getString( c.getColumnIndex("descricao"));
+            @SuppressLint("Range") String fabricante = c.getString( c.getColumnIndex("fabricante"));
+            @SuppressLint("Range") int qtd = c.getInt( c.getColumnIndex("qtd"));
             Facade facade = new Facade(nome, valor, desc, fabricante, qtd);
             Jogo jogo = facade.inicializa(plat);
 

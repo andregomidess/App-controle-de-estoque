@@ -9,9 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
 import br.unifei.imc.facade.Facade;
+import br.unifei.imc.jogos.Jogo;
 
 public class RegistraActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -52,15 +59,22 @@ public class RegistraActivity extends AppCompatActivity implements AdapterView.O
 
     public void reg(View view){
 
-        String nome = textNomeJogoReg.getText().toString();
-        String valor = textValorReg.getText().toString();
-        Double valorD = Double.parseDouble(valor);
-        String desc = textDescReg.getText().toString();
-        String fab = textFabReg.getText().toString();
-        String qtd = textQtdReg.getText().toString();
-        int qtdD = Integer.parseInt(qtd);
-        Facade registra = new Facade(nome, valorD, desc, fab, qtdD);
-        registra.registrar(escolha, getApplicationContext());
+        if (verificaCampoVazio()) {
+            if (verificaExistencia()) {
+                String nome = textNomeJogoReg.getText().toString();
+                String valor = textValorReg.getText().toString();
+                Double valorD = Double.parseDouble(valor);
+                String desc = textDescReg.getText().toString();
+                String fab = textFabReg.getText().toString();
+                String qtd = textQtdReg.getText().toString();
+                int qtdD = Integer.parseInt(qtd);
+                Facade registra = new Facade(nome, valorD, desc, fab, qtdD);
+                registra.registrar(escolha, getApplicationContext());
+                Toast.makeText(getApplicationContext(), "Jogo registrado com sucesso",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
 
     }
 
@@ -74,4 +88,36 @@ public class RegistraActivity extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    public boolean verificaCampoVazio(){
+        String nome = textNomeJogoReg.getText().toString();
+        String valor = textValorReg.getText().toString();
+        String desc = textDescReg.getText().toString();
+        String fab = textFabReg.getText().toString();
+        String qtd = textQtdReg.getText().toString();
+        if (nome.isEmpty() || valor.isEmpty() || desc.isEmpty() || fab.isEmpty() || qtd.isEmpty()){
+            Toast.makeText(getApplicationContext(),
+                    "Erro ao registrar. Por favor não deixe campos vazios!",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean verificaExistencia(){
+        String nome = textNomeJogoReg.getText().toString();
+        GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
+        List<Jogo> listaJogos;
+        listaJogos = gamesDAO.consultar(escolha);
+        for (Jogo p : listaJogos) {
+            if (p.getNome().toLowerCase(Locale.ROOT).equals(nome.toLowerCase(Locale.ROOT))) {
+                Toast.makeText(getApplicationContext(), "Esse jogo já está registrado!",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
