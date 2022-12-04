@@ -80,7 +80,7 @@ public class ListaActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
-                                        dialog.setTitle("Escolha uma opção");
+                                        dialog.setTitle("Excluir");
                                         dialog.setMessage("Você Realmente deseja excluir o jogo?");
 
                                         dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {

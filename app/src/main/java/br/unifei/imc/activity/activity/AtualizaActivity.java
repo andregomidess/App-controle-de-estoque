@@ -3,11 +3,14 @@ package br.unifei.imc.activity.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Method;
 
 import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
@@ -40,6 +43,7 @@ public class AtualizaActivity extends AppCompatActivity {
         plataforma = dados.getString("plataforma");
         textNomeJogoAtualiza.setEnabled(false);
 
+        //puxando informação do objeto q vai ser editado
         if (game != null) {
             textNomeJogoAtualiza.setText(game.getNome());
             textValorAtualiza.setText(game.getValor().toString());
@@ -59,8 +63,6 @@ public class AtualizaActivity extends AppCompatActivity {
         buttonConfirmarAtualiza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
-
                 String valor = textValorAtualiza.getText().toString();
                 String desc = textDescAtualiza.getText().toString();
                 String fab = textFabAtualiza.getText().toString();

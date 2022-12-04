@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">testePOOII</string>
+    <string name="app_name">Controle de estoque</string>
     <string-array name="plataformas">
         <item>Pc</item>
         <item>Multiplataforma</item>
