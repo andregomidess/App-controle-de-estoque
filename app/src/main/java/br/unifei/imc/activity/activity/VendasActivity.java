@@ -78,7 +78,6 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                         nomeJogosVendas.add(jogo.getNome());
                         precoJogoVendas.add(Double.toString(jogo.getValor()));
                         carregarLista();
-                        buttonVenda.setEnabled(true);
                         buttonCalcularPreco.setEnabled(true);
                     } else {
                         Toast.makeText(getApplicationContext(), "Esse jogo não está registrado!", Toast.LENGTH_SHORT).show();
@@ -95,7 +94,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!", Toast.LENGTH_SHORT).show();
-                textViewTotal.setText("");
+                textViewTotal.setText("Total a pagar: ");
                 jogosVenda.clear();
                 nomeJogosVendas.clear();
                 carregarLista();
@@ -109,6 +108,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                 cx.addJogo(new VendaUnitaria(jogosVenda));
                 valorFinal = cx.calculaPrecoFinal();
                 textViewTotal.setText("Total a pagar: R$ " + Double.toString(valorFinal));
+                buttonVenda.setEnabled(true);
             }
         });
     }
