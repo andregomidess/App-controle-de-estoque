@@ -46,7 +46,7 @@ public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Jogo game = listaJogos.get(position);
         holder.nome.setText(StringUtils.capitalize(game.getNome()));
-        holder.valor.setText("Preço unitário: R$" + game.getValor().toString());
+        holder.valor.setText("Preço unitário: R$ " + game.getValor().toString());
         holder.desc.setText(game.getDescricao());
         holder.fabricante.setText(game.getFabricante());
         holder.qtd.setText("Quantidade: " + Integer.toString(game.getQtd()));

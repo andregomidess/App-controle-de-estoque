@@ -28,6 +28,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     private Button buttonVoltarVendas;
     private Button buttonConfirmarVendas;
     private Button buttonVenda;
+    private Button buttonCalcularPreco;
     private String plataforma;
     private ListView listaVendas;
     private TextView textNomeJogoVendas, textViewTotal;
@@ -41,11 +42,13 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
         buttonVoltarVendas = findViewById(R.id.buttonVoltarVendas);
         buttonConfirmarVendas = findViewById(R.id.buttonConfirmarVendas);
+        buttonCalcularPreco = findViewById(R.id.buttonCalcularPreco);
         buttonVenda = findViewById(R.id.buttonVender);
         listaVendas = findViewById(R.id.listaVendas);
         textNomeJogoVendas = findViewById(R.id.textnomeJogoVendas);
         textViewTotal = findViewById(R.id.textViewTotal);
-        buttonVenda.setEnabled(false);
+
+
         Spinner spinner = findViewById(R.id.spinnerVendas);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.plataformas,
                 android.R.layout.simple_spinner_item);
@@ -64,11 +67,13 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                 GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
                 if (!textNomeJogoVendas.getText().toString().isEmpty()) {
                     if (JogoExiste()){
-                        Jogo jogo = gamesDAO.consultaVenda(plataforma, textNomeJogoVendas.getText().toString().toLowerCase().trim());
+                        String nomeJogo = textNomeJogoVendas.getText().toString().toLowerCase().trim();
+                        Jogo jogo = gamesDAO.consultaVenda(plataforma, nomeJogo);
                         jogosVenda.add(jogo);
                         nomeJogosVendas.add(jogo.getNome());
                         carregarLista();
                         buttonVenda.setEnabled(true);
+                        buttonCalcularPreco.setEnabled(true);
                     } else {
                         Toast.makeText(getApplicationContext(), "Esse jogo não está registrado!", Toast.LENGTH_SHORT).show();
                     }
@@ -83,14 +88,21 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         buttonVenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!", Toast.LENGTH_SHORT).show();
+                textViewTotal.setText("");
+                jogosVenda.clear();
+                nomeJogosVendas.clear();
+                carregarLista();
+            }
+        });
+
+        buttonCalcularPreco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Caixas cx = new Caixas(new ArrayList<>());
                 cx.addJogo(new VendaUnitaria(jogosVenda));
                 valorFinal = cx.calculaPrecoFinal();
                 textViewTotal.setText("Total a pagar: R$ " + Double.toString(valorFinal));
-                Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!", Toast.LENGTH_SHORT).show();
-                jogosVenda.clear();
-                nomeJogosVendas.clear();
-                carregarLista();
             }
         });
     }
@@ -106,6 +118,9 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void carregarLista(){
+
+        buttonVenda.setEnabled(false);
+        buttonCalcularPreco.setEnabled(false);
         //criar adaptador para a lista
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, nomeJogosVendas);
@@ -118,8 +133,9 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     public boolean JogoExiste(){
         GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
         List<Jogo> lj = gamesDAO.consultar(plataforma);
+        String nomeJogo = textNomeJogoVendas.getText().toString().toLowerCase().trim();
         for (Jogo jogo: lj){
-            if (textNomeJogoVendas.getText().toString().equals(jogo.getNome())){
+            if (nomeJogo.equals(jogo.getNome())){
                 return true;
             }
         }
