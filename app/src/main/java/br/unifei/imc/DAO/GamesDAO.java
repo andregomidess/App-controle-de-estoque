@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unifei.imc.facade.Facade;
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
 public class GamesDAO implements IGamesDAO{

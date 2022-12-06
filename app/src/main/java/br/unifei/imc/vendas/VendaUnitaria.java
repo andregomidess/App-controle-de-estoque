@@ -1,6 +1,5 @@
 package br.unifei.imc.vendas;
 
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
 import java.util.List;

@@ -1,27 +1,19 @@
 package br.unifei.imc.activity.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.apache.commons.lang3.StringUtils;
 
 import br.unifei.imc.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.unifei.imc.activity.activity.ConsultaActivity;
-import br.unifei.imc.activity.activity.MainActivity;
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
 public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> {

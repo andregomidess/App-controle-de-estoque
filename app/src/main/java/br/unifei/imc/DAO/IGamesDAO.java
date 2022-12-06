@@ -2,7 +2,6 @@ package br.unifei.imc.DAO;
 
 import java.util.List;
 
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
 public interface IGamesDAO {

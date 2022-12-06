@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
@@ -25,7 +24,6 @@ import java.util.List;
 import br.unifei.imc.activity.adapter.AdapterJogo;
 import br.unifei.imc.activity.listener.RecyclerItemClickListener;
 import br.unifei.imc.facade.Facade;
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 
 public class ListaActivity extends AppCompatActivity {

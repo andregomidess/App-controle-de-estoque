@@ -17,11 +17,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
-import br.unifei.imc.jogos.Games;
 import br.unifei.imc.jogos.Jogo;
 import br.unifei.imc.vendas.Caixas;
 import br.unifei.imc.vendas.VendaUnitaria;
