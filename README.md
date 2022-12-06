@@ -26,4 +26,4 @@ Também foi utilizado o figma, para criar o design do projeto
 
 ---
 ## Descrição do APP
-![Imgur](https://i.imgur.com/0QR5E1c.jpg)
+![Imgur](https://i.imgur.com/0QR5E1c.jpg?1)
