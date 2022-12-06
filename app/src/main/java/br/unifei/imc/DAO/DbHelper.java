@@ -20,7 +20,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABELA_JOGOS + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " plataforma TEXT NOT NULL, nome TEXT NOT NULL, valor REAL NOT NULL, descricao TEXT," +
+                " plataforma TEXT NOT NULL, nome TEXT NOT NULL UNIQUE, valor REAL NOT NULL, descricao TEXT," +
                 " fabricante TEXT NOT NULL, qtd INTEGER ); ";
 
         try{

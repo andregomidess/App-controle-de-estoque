@@ -7,6 +7,22 @@
     android:background="@drawable/gradient"
     tools:context=".activity.activity.VendasActivity">
 
+    <ListView
+        android:id="@+id/listaVendas"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/divider_horizontal_dark"
+        android:clickable="false"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewVendas"
         android:layout_width="320dp"
@@ -24,14 +40,14 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/buttonConfirmarDeleta"
+        android:id="@+id/buttonConfirmarVendas"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Confirmar"
+        android:text="Adicionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonVoltarDeleta"
+        app:layout_constraintStart_toEndOf="@+id/buttonVoltarVendas"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,18 +60,19 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerVendas">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textnomeJogoVendas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite o nome do jogo:" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonVoltarDeleta"
+        android:id="@+id/buttonVoltarVendas"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Voltar"
-        app:layout_constraintEnd_toStartOf="@+id/buttonConfirmarDeleta"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConfirmarVendas"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -68,5 +85,33 @@
         android:background="@android:drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/buttonVender"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Confirmar venda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaVendas" />
+
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="Total a pagar: "
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listaVendas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

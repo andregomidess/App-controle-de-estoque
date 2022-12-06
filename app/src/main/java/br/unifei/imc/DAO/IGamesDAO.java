@@ -11,4 +11,5 @@ public interface IGamesDAO {
     public boolean atualizar (Jogo jogo, String plataforma);
     public boolean deletar (Jogo jogo, String plataforma);
     public List<Jogo> consultar(String plataforma);
+    public Jogo consultaVenda (String plataforma, String nomeJogo);
 }

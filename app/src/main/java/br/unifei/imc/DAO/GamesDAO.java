@@ -112,4 +112,31 @@ public class GamesDAO implements IGamesDAO{
 
         return jogos;
     }
+
+    @Override
+    public Jogo consultaVenda(String plataforma, String nomeJogo) {
+
+        String sql = "SELECT * FROM " + DbHelper.TABELA_JOGOS + " WHERE plataforma = "
+                + "'" + plataforma + "'" + " AND nome = " + "'" + nomeJogo + "'" + " ;";
+        Cursor c = le.rawQuery(sql, null);
+        Jogo jogo = null;
+        while (c.moveToNext()) {
+            @SuppressLint("Range") String nome = c.getString(c.getColumnIndex("nome"));
+            @SuppressLint("Range") Double valor = c.getDouble(c.getColumnIndex("valor"));
+            @SuppressLint("Range") String desc = c.getString(c.getColumnIndex("descricao"));
+            @SuppressLint("Range") String fabricante = c.getString(c.getColumnIndex("fabricante"));
+            @SuppressLint("Range") int qtd = c.getInt(c.getColumnIndex("qtd"));
+            Facade facade = new Facade(nome, valor, desc, fabricante, qtd);
+            jogo = facade.inicializa(plataforma);
+
+            jogo.setNome(nome);
+            jogo.setValor(valor);
+            jogo.setDescricao(desc);
+            jogo.setFabricante(fabricante);
+            jogo.setQtd(qtd);
+
+        }
+
+        return jogo;
+    }
 }

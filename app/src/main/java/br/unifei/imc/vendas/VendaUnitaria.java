@@ -1,6 +1,7 @@
 package br.unifei.imc.vendas;
 
 import br.unifei.imc.jogos.Games;
+import br.unifei.imc.jogos.Jogo;
 
 import java.util.List;
 
@@ -8,10 +9,10 @@ public class VendaUnitaria implements JogoVendido{
 
 //    Composite
 
-    private List<Games> jogos;
+    private List<Jogo> jogos;
     private double preco=0;
 
-    public VendaUnitaria(List<Games> jogos){
+    public VendaUnitaria(List<Jogo> jogos){
         this.jogos = jogos;
     }
 

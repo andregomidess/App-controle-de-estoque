@@ -26,8 +26,6 @@ public class ConsultaActivity extends AppCompatActivity implements AdapterView.O
 
         buttonConfirmarConsulta = findViewById(R.id.buttonConfirmarConsullta);
         buttonVoltarConsulta = findViewById(R.id.buttonVoltarConsulta);
-        //textNomejogoConsulta = findViewById(R.id.textNomeJogoConsulta);
-        //textPlataformaConsulta = findViewById(R.id.textPlataformaConsulta);
         Spinner spinner = findViewById(R.id.textSpinnerConsulta);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.plataformas,
                 android.R.layout.simple_spinner_item);

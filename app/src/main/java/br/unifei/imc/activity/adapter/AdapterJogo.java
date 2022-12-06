@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.unifei.imc.R;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class AdapterJogo extends RecyclerView.Adapter<AdapterJogo.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Jogo game = listaJogos.get(position);
-        holder.nome.setText(game.getNome());
+        holder.nome.setText(StringUtils.capitalize(game.getNome()));
         holder.valor.setText("Preço unitário: R$" + game.getValor().toString());
         holder.desc.setText(game.getDescricao());
         holder.fabricante.setText(game.getFabricante());

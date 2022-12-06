@@ -61,7 +61,7 @@ public class RegistraActivity extends AppCompatActivity implements AdapterView.O
 
         if (verificaCampoVazio()) {
             if (verificaExistencia()) {
-                String nome = textNomeJogoReg.getText().toString();
+                String nome = textNomeJogoReg.getText().toString().toLowerCase().trim();
                 String valor = textValorReg.getText().toString();
                 Double valorD = Double.parseDouble(valor);
                 String desc = textDescReg.getText().toString();
