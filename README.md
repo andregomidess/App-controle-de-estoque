@@ -13,11 +13,11 @@ vender.
 * Factory Method
   ![Imgur](https://i.imgur.com/ehp3WSn.png)
 * Façade
-  ![Imgur](https://i.imgur.com/hgqKbwJ.png)
+  ![Imgur](https://i.imgur.com/d6zNBBV.png)
 * Composite
   ![Imgur](https://i.imgur.com/YJP9CFQ.png)
 * Data Access Object (DAO)
-  ![Imgur](https://i.imgur.com/ssvJCi9.png)
+  ![Imgur](https://i.imgur.com/FVvc3Pn.png)
 ---
 ## Ferramentas utilizadas
 Nesse projeto foi utilizado o Android Studio, para desenvolver uma aplicação nativa para android.
