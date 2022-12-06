@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,8 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     private List<Jogo> jogosVenda = new ArrayList<>();
     private double valorFinal;
     private List<String> nomeJogosVendas = new ArrayList<>();
+    private List<String> precoJogoVendas = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +76,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                         Jogo jogo = gamesDAO.consultaVenda(plataforma, nomeJogo);
                         jogosVenda.add(jogo);
                         nomeJogosVendas.add(jogo.getNome());
+                        precoJogoVendas.add(Double.toString(jogo.getValor()));
                         carregarLista();
                         buttonVenda.setEnabled(true);
                         buttonCalcularPreco.setEnabled(true);
@@ -117,17 +123,31 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    public void carregarLista(){
+    public void carregarLista() {
 
         buttonVenda.setEnabled(false);
         buttonCalcularPreco.setEnabled(false);
         //criar adaptador para a lista
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, nomeJogosVendas);
+                android.R.layout.simple_list_item_2, android.R.id.text1, nomeJogosVendas) {
+            @Override
+            public View getView(int position,
+                                View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
 
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(StringUtils.capitalize(nomeJogosVendas.get(position)));
+
+                text2.setText("R$ " + precoJogoVendas.get(position));
+
+                return view;
+            }
+
+        };
         //Adiciona adaptador para a lista
         listaVendas.setAdapter(adaptador);
-
     }
 
     public boolean JogoExiste(){
