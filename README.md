@@ -6,7 +6,7 @@ Projeto da disciplina de Computação Orientado a Objetos II - UNIFEI
   * Gustavo Daniel Vitor
 ---
 ## Aplicativo de controle de estoque de games
-Esse é um aplicativo de controle de jogos, nele é permitido registrar jogos, deletar, atualizar e 
+Esse é um aplicativo de controle de estoque de jogos, nele é permitido registrar jogos, deletar, atualizar e 
 vender.
 
 ---
