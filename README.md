@@ -36,4 +36,4 @@ Também foi utilizado o figma, para criar o design do projeto
 ---
 
 ## Link do APP para download
-* [Clique aqui para baixar]https://drive.google.com/file/d/1vBfjJcdTpwu89ZbefKh9OJKhrsAAvz6c/view?usp=share_link
+* [Clique aqui para baixar](https://drive.google.com/file/d/1q5B2WYcIno0yEOSKY6kYa-Dl_rDKMBew/view?usp=share_link)
