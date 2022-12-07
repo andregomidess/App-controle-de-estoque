@@ -25,7 +25,7 @@ Nesse projeto foi utilizado o Android Studio, para desenvolver uma aplicação n
 Também foi utilizado o figma, para criar o design do projeto
 
 ---
-## Descrição do APP
+## Imagens do APP
 ![Imgur](https://i.imgur.com/0QR5E1c.jpg?1)
 ![Imgur](https://i.imgur.com/FNZjg0a.jpg?1)
 ![Imgur](https://i.imgur.com/Ng1eZgG.jpg?4)
