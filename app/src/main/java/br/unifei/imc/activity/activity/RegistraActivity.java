@@ -3,6 +3,7 @@ package br.unifei.imc.activity.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.RoundedCorner;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;

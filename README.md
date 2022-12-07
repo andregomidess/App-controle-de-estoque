@@ -25,6 +25,7 @@ Nesse projeto foi utilizado o Android Studio, para desenvolver uma aplicação n
 Também foi utilizado o figma, para criar o design do projeto
 
 ---
+
 ## Imagens do APP
 ![Imgur](https://i.imgur.com/0QR5E1c.jpg?1)
 ![Imgur](https://i.imgur.com/FNZjg0a.jpg?1)
@@ -33,3 +34,6 @@ Também foi utilizado o figma, para criar o design do projeto
 ![Imgur](https://i.imgur.com/SUENh2V.jpg?2)
 
 ---
+
+## Link do APP para download
+* [Clique aqui para baixar]https://drive.google.com/file/d/1vBfjJcdTpwu89ZbefKh9OJKhrsAAvz6c/view?usp=share_link
