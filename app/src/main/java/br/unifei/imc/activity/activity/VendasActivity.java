@@ -16,7 +16,9 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.unifei.imc.DAO.GamesDAO;
 import br.unifei.imc.R;
@@ -37,6 +39,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     private double valorFinal;
     private List<String> nomeJogosVendas = new ArrayList<>();
     private List<String> precoJogoVendas = new ArrayList<>();
+    private Map<String, Integer> contador = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +76,16 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                         String nomeJogo = textNomeJogoVendas.getText().toString().toLowerCase().trim();
                         Jogo jogo = gamesDAO.consultaVenda(plataforma, nomeJogo);
                         jogosVenda.add(jogo);
-                        nomeJogosVendas.add(jogo.getNome());
-                        precoJogoVendas.add(Double.toString(jogo.getValor()));
-                        carregarLista();
-                        buttonCalcularPreco.setEnabled(true);
+                        if(contaQtd(jogo)){
+                            nomeJogosVendas.add(jogo.getNome());
+                            precoJogoVendas.add(Double.toString(jogo.getValor()));
+                            carregarLista();
+                            buttonCalcularPreco.setEnabled(true);
+                        }else {
+                            Toast.makeText(getApplicationContext(), "Quantidade insuficiente em estoque",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Esse jogo não está registrado!", Toast.LENGTH_SHORT).show();
                     }
@@ -91,10 +100,14 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         buttonVenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!", Toast.LENGTH_SHORT).show();
+                GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
+                gamesDAO.atualizaQtdVendas(contador, plataforma);
+                Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!",
+                        Toast.LENGTH_SHORT).show();
                 textViewTotal.setText("Total a pagar: ");
                 jogosVenda.clear();
                 nomeJogosVendas.clear();
+                contador.clear();
                 carregarLista();
             }
         });
@@ -158,6 +171,21 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
             }
         }
         return false;
+    }
+
+    public boolean contaQtd (Jogo jogo){
+        if (!contador.containsKey(jogo.getNome())){
+            contador.put(jogo.getNome(), jogo.getQtd()-1);
+        }else {
+            Integer qtd = contador.get(jogo.getNome());
+            Integer qtdNova = qtd - 1;
+            if (qtdNova < 0){
+                return false;
+            }else {
+                contador.replace(jogo.getNome(), qtdNova);
+            }
+        }
+        return true;
     }
 
 

@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.unifei.imc.facade.Facade;
 import br.unifei.imc.jogos.Jogo;
@@ -137,5 +139,31 @@ public class GamesDAO implements IGamesDAO{
         }
 
         return jogo;
+    }
+
+    @Override
+    public void atualizaQtdVendas(Map dict, String plataforma) {
+        ContentValues cv = new ContentValues();
+        dict.forEach((key, value) -> {
+            if ((Integer)value <= 0){
+                try {
+                    String[] args = {(String) key, plataforma};
+                    escreve.delete(DbHelper.TABELA_JOGOS, "nome=? AND plataforma=?", args);
+                    Log.i("INFO", "Jogo remover com sucesso");
+                }catch (Exception e){
+                    Log.e("INFO", "Erro ao remover a Jogo " + e.getMessage());
+                }
+            } else {
+                cv.put("nome", (String) key);
+                cv.put("qtd", (Integer) value);
+                try {
+                    String[] args = {(String) key, plataforma};
+                    escreve.update(DbHelper.TABELA_JOGOS, cv, "nome=? AND plataforma=?", args);
+                    Log.i("INFO", "Jogo atualizada com sucesso");
+                }catch (Exception e){
+                    Log.e("INFO", "Erro ao atualizar a Jogo " + e.getMessage());
+                }}
+
+        });
     }
 }
