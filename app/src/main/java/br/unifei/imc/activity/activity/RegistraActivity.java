@@ -69,11 +69,17 @@ public class RegistraActivity extends AppCompatActivity implements AdapterView.O
                 String fab = textFabReg.getText().toString();
                 String qtd = textQtdReg.getText().toString();
                 int qtdD = Integer.parseInt(qtd);
-                Facade registra = new Facade(nome, valorD, desc, fab, qtdD);
-                registra.registrar(escolha, getApplicationContext());
-                Toast.makeText(getApplicationContext(), "Jogo registrado com sucesso",
-                        Toast.LENGTH_SHORT).show();
-                finish();
+                if (qtdD <= 0){
+                    Toast.makeText(getApplicationContext(), "Não é possível registrar uma quantidade menor ou igual a zero!!",
+                            Toast.LENGTH_SHORT).show();
+                }else {
+                    Facade registra = new Facade(nome, valorD, desc, fab, qtdD);
+                    registra.registrar(escolha, getApplicationContext());
+                    Toast.makeText(getApplicationContext(), "Jogo registrado com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
             }
         }
 
