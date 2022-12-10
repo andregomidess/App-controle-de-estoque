@@ -9,8 +9,4 @@ public class FabricaJogosPlay5 extends FabricaDeJogo{
         return new JogoPlay5(nome, valor, desc, fabricante, qtd);
     }
 
-    @Override
-    public Jogo criaJogos() {
-        return new JogoPlay5();
-    }
 }

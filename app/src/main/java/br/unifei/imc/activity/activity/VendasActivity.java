@@ -31,11 +31,13 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     private Button buttonVoltarVendas;
     private Button buttonConfirmarVendas;
     private Button buttonVenda;
-    private Button buttonCalcularPreco;
+    private Button buttonCriarBox;
     private String plataforma;
     private ListView listaVendas;
-    private TextView textNomeJogoVendas, textViewTotal;
-    private List<Jogo> jogosVenda = new ArrayList<>();
+    private TextView textNomeJogoVendas, textViewTotal, textViewBox;
+    private Caixas cx = new Caixas(new ArrayList<>());
+    private Caixas cxFinal = new Caixas(new ArrayList<>());
+    private double valorBox;
     private double valorFinal;
     private List<String> nomeJogosVendas = new ArrayList<>();
     private List<String> precoJogoVendas = new ArrayList<>();
@@ -48,11 +50,12 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
         buttonVoltarVendas = findViewById(R.id.buttonVoltarVendas);
         buttonConfirmarVendas = findViewById(R.id.buttonConfirmarVendas);
-        buttonCalcularPreco = findViewById(R.id.buttonCalcularPreco);
+        buttonCriarBox = findViewById(R.id.buttonCriarBox);
         buttonVenda = findViewById(R.id.buttonVender);
         listaVendas = findViewById(R.id.listaVendas);
         textNomeJogoVendas = findViewById(R.id.textnomeJogoVendas);
         textViewTotal = findViewById(R.id.textViewTotal);
+        textViewBox = findViewById(R.id.textViewBox);
 
 
         Spinner spinner = findViewById(R.id.spinnerVendas);
@@ -75,12 +78,12 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                     if (JogoExiste()){
                         String nomeJogo = textNomeJogoVendas.getText().toString().toLowerCase().trim();
                         Jogo jogo = gamesDAO.consultaVenda(plataforma, nomeJogo);
-                        jogosVenda.add(jogo);
+                        cx.addJogo(new VendaUnitaria(jogo));
                         if(contaQtd(jogo)){
                             nomeJogosVendas.add(jogo.getNome());
                             precoJogoVendas.add(Double.toString(jogo.getValor()));
                             carregarLista();
-                            buttonCalcularPreco.setEnabled(true);
+                            buttonCriarBox.setEnabled(true);
                         }else {
                             Toast.makeText(getApplicationContext(), "Quantidade insuficiente em estoque",
                                     Toast.LENGTH_SHORT).show();
@@ -100,26 +103,38 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         buttonVenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
-                gamesDAO.atualizaQtdVendas(contador, plataforma);
                 Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!",
                         Toast.LENGTH_SHORT).show();
                 textViewTotal.setText("Total a pagar: ");
-                jogosVenda.clear();
+                textViewBox.setText("Box 1");
                 nomeJogosVendas.clear();
-                contador.clear();
+                cx = new Caixas(new ArrayList<>());
                 carregarLista();
             }
         });
 
-        buttonCalcularPreco.setOnClickListener(new View.OnClickListener() {
+        buttonCriarBox.setOnClickListener(new View.OnClickListener() {
+            Integer num=2;
             @Override
             public void onClick(View view) {
-                Caixas cx = new Caixas(new ArrayList<>());
-                cx.addJogo(new VendaUnitaria(jogosVenda));
-                valorFinal = cx.calculaPrecoFinal();
-                textViewTotal.setText("Total a pagar: R$ " + Double.toString(valorFinal));
+                cxFinal.addJogo(cx);
+                //Calculando o preço da Box
+                valorBox = cx.calculaPrecoFinal();
+                //Calculando o preço Final
+                valorFinal = cxFinal.calculaPrecoFinal();
+                textViewTotal.setText("Box: R$ " + Double.toString(valorBox)
+                        +" Preço Total: R$ " +Double.toString(valorFinal));
+                textViewBox.setText("Box "+Integer.toString(num));
+                GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
+                gamesDAO.atualizaQtdVendas(contador, plataforma);
+                Toast.makeText(getApplicationContext(), "Box criada com Sucesso!",
+                        Toast.LENGTH_SHORT).show();
+                carregarLista();
+                nomeJogosVendas.clear();
+                contador.clear();
                 buttonVenda.setEnabled(true);
+                cx = new Caixas(new ArrayList<>());
+                num++;
             }
         });
     }
@@ -137,7 +152,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     public void carregarLista() {
 
         buttonVenda.setEnabled(false);
-        buttonCalcularPreco.setEnabled(false);
+        buttonCriarBox.setEnabled(false);
         //criar adaptador para a lista
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_2, android.R.id.text1, nomeJogosVendas) {

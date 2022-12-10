@@ -96,7 +96,7 @@
         android:text="Confirmar venda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonCalcularPreco"
+        app:layout_constraintStart_toEndOf="@+id/buttonCriarBox"
         app:layout_constraintTop_toBottomOf="@+id/listaVendas" />
 
     <TextView
@@ -115,12 +115,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
+    <TextView
+        android:id="@+id/textViewBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="Box 1:"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listaVendas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
-        android:id="@+id/buttonCalcularPreco"
+        android:id="@+id/buttonCriarBox"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Calcular preço"
+        android:text="Criar Box"
         app:layout_constraintEnd_toStartOf="@+id/buttonVender"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

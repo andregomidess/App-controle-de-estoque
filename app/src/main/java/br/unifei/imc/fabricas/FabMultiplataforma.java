@@ -9,8 +9,4 @@ public class FabMultiplataforma extends FabricaDeJogo{
         return new JogoMultiplataforma(nome, valor, desc, fabricante, qtd);
     }
 
-    @Override
-    public Jogo criaJogos() {
-        return new JogoMultiplataforma();
-    }
 }
