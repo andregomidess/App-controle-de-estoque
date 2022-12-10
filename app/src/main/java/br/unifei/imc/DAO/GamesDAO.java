@@ -142,13 +142,13 @@ public class GamesDAO implements IGamesDAO{
     }
 
     @Override
-    public void atualizaQtdVendas(Map dict, String plataforma) {
+    public void atualizaQtdVendas(Map dict) {
         ContentValues cv = new ContentValues();
         dict.forEach((key, value) -> {
             if ((Integer)value <= 0){
                 try {
-                    String[] args = {(String) key, plataforma};
-                    escreve.delete(DbHelper.TABELA_JOGOS, "nome=? AND plataforma=?", args);
+                    String[] args = {(String) key};
+                    escreve.delete(DbHelper.TABELA_JOGOS, "nome=?", args);
                     Log.i("INFO", "Jogo remover com sucesso");
                 }catch (Exception e){
                     Log.e("INFO", "Erro ao remover a Jogo " + e.getMessage());
@@ -157,8 +157,8 @@ public class GamesDAO implements IGamesDAO{
                 cv.put("nome", (String) key);
                 cv.put("qtd", (Integer) value);
                 try {
-                    String[] args = {(String) key, plataforma};
-                    escreve.update(DbHelper.TABELA_JOGOS, cv, "nome=? AND plataforma=?", args);
+                    String[] args = {(String) key};
+                    escreve.update(DbHelper.TABELA_JOGOS, cv, "nome=?", args);
                     Log.i("INFO", "Jogo atualizada com sucesso");
                 }catch (Exception e){
                     Log.e("INFO", "Erro ao atualizar a Jogo " + e.getMessage());

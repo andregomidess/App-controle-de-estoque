@@ -13,5 +13,5 @@ public interface IGamesDAO {
     public boolean deletar (Jogo jogo, String plataforma);
     public List<Jogo> consultar(String plataforma);
     public Jogo consultaVenda (String plataforma, String nomeJogo);
-    public void atualizaQtdVendas(Map dict, String plataforma);
+    public void atualizaQtdVendas(Map dict);
 }
