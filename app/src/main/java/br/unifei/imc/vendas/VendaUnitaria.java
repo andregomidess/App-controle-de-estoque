@@ -1,28 +1,24 @@
 package br.unifei.imc.vendas;
-
 import br.unifei.imc.jogos.Jogo;
 
-import java.util.List;
 
 public class VendaUnitaria implements JogoVendido{
 
 //    Composite
 
-    private List<Jogo> jogos;
+    private Jogo jogo;
     private double preco=0;
 
-    public VendaUnitaria(List<Jogo> jogos){
-        this.jogos = jogos;
+    public VendaUnitaria(Jogo jogo){
+        this.jogo = jogo;
     }
 
 
     @Override
     public double calculaPrecoFinal() {
 
-        jogos.forEach(p->{
-            preco += p.getValor();
-        });
+    preco = jogo.getValor();
+    return preco;
 
-        return preco;
     }
 }

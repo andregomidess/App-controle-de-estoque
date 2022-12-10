@@ -26,9 +26,6 @@ public class JogoMultiplataforma implements Jogo, Serializable {
         this.qtd = qtd;
     }
 
-    public JogoMultiplataforma() {
-
-    }
 
     @Override
     public void registra(Context context) {

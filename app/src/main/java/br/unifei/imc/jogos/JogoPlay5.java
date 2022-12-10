@@ -25,9 +25,6 @@ public class JogoPlay5 implements Jogo, Serializable {
         this.qtd = qtd;
     }
 
-    public JogoPlay5() {
-
-    }
 
     @Override
     public void registra(Context context) {
