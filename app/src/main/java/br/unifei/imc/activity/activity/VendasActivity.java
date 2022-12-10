@@ -30,12 +30,12 @@ import br.unifei.imc.vendas.VendaUnitaria;
 public class VendasActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button buttonVoltarVendas;
-    private Button buttonConfirmarVendas;
+    private Button buttonAddJogo;
     private Button buttonVenda;
     private Button buttonCriarBox;
     private String plataforma;
     private ListView listaVendas;
-    private TextView textNomeJogoVendas, textViewTotal;
+    private TextView textNomeJogoVendas, textViewTotal, textViewBox;
     private List<Jogo> jogosVenda = new ArrayList<>();
     private double valorFinal = 0;
     private List<String> nomeJogosVendas = new ArrayList<>();
@@ -48,12 +48,13 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_vendas);
 
         buttonVoltarVendas = findViewById(R.id.buttonVoltarVendas);
-        buttonConfirmarVendas = findViewById(R.id.buttonAddJogo);
+        buttonAddJogo = findViewById(R.id.buttonAddJogo);
         buttonCriarBox = findViewById(R.id.buttonCriarBox);
         buttonVenda = findViewById(R.id.buttonVender);
         listaVendas = findViewById(R.id.listaVendas);
         textNomeJogoVendas = findViewById(R.id.textnomeJogoVendas);
         textViewTotal = findViewById(R.id.textViewTotal);
+        textViewBox = findViewById(R.id.textViewBox);
 
 
         Spinner spinner = findViewById(R.id.spinnerVendas);
@@ -68,7 +69,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
 
         buttonVoltarVendas.setOnClickListener(view -> finish());
-        buttonConfirmarVendas.setOnClickListener(new View.OnClickListener() {
+        buttonAddJogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
@@ -83,6 +84,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                             precoJogoVendas.add(Double.toString(jogo.getValor()));
                             VendaUnitaria vendaUnitaria = new VendaUnitaria(jogo);
                             valorFinal += vendaUnitaria.calculaPrecoFinal();
+                            textViewTotal.setText("Total a pagar: " + Double.toString(valorFinal));
                             buttonVenda.setEnabled(true);
                             carregarLista();
 
@@ -142,7 +144,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
     public void carregarLista() {
 
-        buttonVenda.setEnabled(false);
+        //buttonVenda.setEnabled(false);
         //buttonCalcularPreco.setEnabled(false);
         //criar adaptador para a lista
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(),
