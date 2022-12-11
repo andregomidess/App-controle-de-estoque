@@ -24,4 +24,8 @@ public class Caixas implements JogoVendido {
         }
         return precoFinal;
     }
+
+    public List<JogoVendido> getJogos() {
+        return jogos;
+    }
 }

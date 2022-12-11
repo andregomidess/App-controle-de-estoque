@@ -16,6 +16,7 @@ public class JogoMultiplataforma implements Jogo, Serializable {
     private String fabricante;
     private int qtd;
     private GamesDAO gamesDAO;
+    private static final String plataforma = "Multiplataforma";
 
 
     public JogoMultiplataforma(String nome, Double valor, String descricao, String fabricante, int qtd) {

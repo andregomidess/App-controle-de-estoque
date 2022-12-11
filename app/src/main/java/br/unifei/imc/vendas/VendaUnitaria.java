@@ -17,8 +17,7 @@ public class VendaUnitaria implements JogoVendido{
     @Override
     public double calculaPrecoFinal() {
 
-    preco = jogo.getValor();
-    return preco;
+        return jogo.getValor();
 
     }
 }

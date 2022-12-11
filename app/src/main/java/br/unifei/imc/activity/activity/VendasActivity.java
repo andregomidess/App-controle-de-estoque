@@ -2,6 +2,7 @@ package br.unifei.imc.activity.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
     private List<String> nomeJogosVendas = new ArrayList<>();
     private List<String> precoJogoVendas = new ArrayList<>();
     private Map<String, Integer> contador = new HashMap<>();
+    private Caixas cxFinal = new Caixas(new ArrayList<>());
+    private int i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +54,13 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         buttonAddJogo = findViewById(R.id.buttonAddJogo);
         buttonCriarBox = findViewById(R.id.buttonCriarBox);
         buttonVenda = findViewById(R.id.buttonVender);
+        buttonCriarBox = findViewById(R.id.buttonCriarBox);
         listaVendas = findViewById(R.id.listaVendas);
         textNomeJogoVendas = findViewById(R.id.textnomeJogoVendas);
         textViewTotal = findViewById(R.id.textViewTotal);
         textViewBox = findViewById(R.id.textViewBox);
+        buttonVenda.setEnabled(false);
+        buttonCriarBox.setEnabled(false);
 
 
         Spinner spinner = findViewById(R.id.spinnerVendas);
@@ -73,7 +79,6 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View view) {
                 GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
-
                 if (!textNomeJogoVendas.getText().toString().isEmpty()) {
                     if (JogoExiste()){
                         String nomeJogo = textNomeJogoVendas.getText().toString().toLowerCase().trim();
@@ -82,10 +87,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                         if(contaQtd(jogo)){
                             nomeJogosVendas.add(jogo.getNome());
                             precoJogoVendas.add(Double.toString(jogo.getValor()));
-                            VendaUnitaria vendaUnitaria = new VendaUnitaria(jogo);
-                            valorFinal += vendaUnitaria.calculaPrecoFinal();
-                            textViewTotal.setText("Total a pagar: " + Double.toString(valorFinal));
-                            buttonVenda.setEnabled(true);
+                            buttonCriarBox.setEnabled(true);
                             carregarLista();
 
                         }else {
@@ -105,31 +107,46 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
         buttonVenda.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
+                i = 1;
                 GamesDAO gamesDAO = new GamesDAO(getApplicationContext());
                 gamesDAO.atualizaQtdVendas(contador);
                 Toast.makeText(getApplicationContext(), "Jogos vendidos com sucesso!",
                         Toast.LENGTH_SHORT).show();
-                //textViewTotal.setText("Total a pagar: ");
-                jogosVenda.clear();
-                nomeJogosVendas.clear();
+                textViewTotal.setText("Total a pagar: ");
+                textViewBox.setText("Box: " + i);
                 contador.clear();
+                jogosVenda.clear();
+                precoJogoVendas.clear();
+                nomeJogosVendas.clear();
+                buttonVenda.setEnabled(false);
+                buttonCriarBox.setEnabled(false);
                 carregarLista();
             }
         });
 
-//        buttonCalcularPreco.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Caixas cx = new Caixas(new ArrayList<>());
-//                cx.addJogo((JogoVendido) jogosVenda);
-//                valorFinal = cx.calculaPrecoFinal();
-//                String valorFormatado = String.format("%.2f", valorFinal);
-//                textViewTotal.setText("Total a pagar: R$ " + valorFormatado);
-//                buttonVenda.setEnabled(true);
-//            }
-//        });
+        buttonCriarBox.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                i++;
+                Caixas c  = new Caixas(new ArrayList<>());
+                for (Jogo j : jogosVenda){
+                    c.addJogo(new VendaUnitaria(j));
+                }
+                cxFinal.addJogo(c);
+                valorFinal += cxFinal.calculaPrecoFinal();
+                @SuppressLint("DefaultLocale") String valorFormatado = String.format("%.2f", valorFinal);
+                textViewTotal.setText("Total a pagar: R$ " + valorFormatado);
+                textViewBox.setText("Box " + i);
+                buttonVenda.setEnabled(true);
+                nomeJogosVendas.clear();
+                jogosVenda.clear();
+                carregarLista();
+            }
+        });
     }
 
     @Override
@@ -144,8 +161,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
 
     public void carregarLista() {
 
-        //buttonVenda.setEnabled(false);
-        //buttonCalcularPreco.setEnabled(false);
+
         //criar adaptador para a lista
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_2, android.R.id.text1, nomeJogosVendas) {
