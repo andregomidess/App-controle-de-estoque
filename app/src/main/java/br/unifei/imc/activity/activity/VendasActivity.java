@@ -137,7 +137,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                     c.addJogo(new VendaUnitaria(j));
                 }
                 cxFinal.addJogo(c);
-                valorFinal += cxFinal.calculaPrecoFinal();
+                valorFinal = cxFinal.calculaPrecoFinal();
                 @SuppressLint("DefaultLocale") String valorFormatado = String.format("%.2f", valorFinal);
                 textViewTotal.setText("Total a pagar: R$ " + valorFormatado);
                 textViewBox.setText("Box " + i);
