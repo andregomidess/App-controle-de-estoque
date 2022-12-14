@@ -121,6 +121,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                 jogosVenda.clear();
                 precoJogoVendas.clear();
                 nomeJogosVendas.clear();
+                cxFinal.getJogos().clear();
                 buttonVenda.setEnabled(false);
                 buttonCriarBox.setEnabled(false);
                 carregarLista();
@@ -143,6 +144,7 @@ public class VendasActivity extends AppCompatActivity implements AdapterView.OnI
                 textViewBox.setText("Box " + i);
                 buttonVenda.setEnabled(true);
                 nomeJogosVendas.clear();
+                precoJogoVendas.clear();
                 jogosVenda.clear();
                 carregarLista();
             }
